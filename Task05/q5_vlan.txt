@@ -1,0 +1,38 @@
+enable
+
+configure terminal
+
+hostname SW-Admin
+
+vlan 10
+ name Office
+
+vlan 20
+ name CCTV
+
+vlan 30
+ name Guest-WiFi
+
+interface range FastEthernet0/1 - 12
+ switchport mode access
+ switchport access vlan 10
+
+interface range FastEthernet0/13 - 20
+ switchport mode access
+ switchport access vlan 20
+
+interface range FastEthernet0/21 - 24
+ switchport mode access
+ switchport access vlan 30
+
+interface GigabitEthernet0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30
+
+end
+
+write memory
+
+show vlan brief
+
+show interfaces trunk
